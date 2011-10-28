@@ -20,7 +20,7 @@ public class NabokosApplet extends Applet {
 	
 	@Override
 	public void init() {
-		game = new Game();
+		game = new Game(maximumSize);
 		setLayout(new BorderLayout());
 		setMaximumSize(maximumSize);
 		setMinimumSize(minimumSize);
