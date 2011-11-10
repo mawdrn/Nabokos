@@ -5,6 +5,7 @@ import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
+import java.awt.image.BufferedImage;
 
 public class Game extends Canvas implements Runnable {
 	private static final long serialVersionUID = 8593882110171080833L;
@@ -13,6 +14,7 @@ public class Game extends Canvas implements Runnable {
 	private static final Color BACK_GROUND_COLOR = new Color(128, 128, 128);
 	private boolean running = false; 
 	private InputController keyboard = new InputController();
+	private World world = new World();
 	
 	public Game(Dimension dim) {
 		addKeyListener(keyboard);
@@ -38,12 +40,15 @@ public class Game extends Canvas implements Runnable {
 	
 	private void tick() {
 		PressedKeys keys = keyboard.consumeKeys();
+		world.setPressedKeys(keys);
 		render();
 	}
 	
 	private void render() {
 		Graphics graph = getBufferedGraphics();
 		
+		BufferedImage image = world.render();
+		graph.drawImage(image, 0, 0, null);
 		graph.dispose();
 		
 		showBufferedGraphics();
