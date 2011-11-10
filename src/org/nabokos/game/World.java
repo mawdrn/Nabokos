@@ -20,6 +20,8 @@ public class World {
 	private int[] fire2;
 	private int[] fire3;
 	private int[] door;
+	private int[] openDoor;
+	private int[] player;
 	
 	private BufferedImage world = new BufferedImage(MAX_WIDTH, MAX_HEIGHT, BufferedImage.TYPE_INT_RGB);
 	
@@ -32,6 +34,8 @@ public class World {
 		fire2 =  Tileset.getTile(TILE.FIRE_2);
 		fire3 =  Tileset.getTile(TILE.FIRE_3);
 		door =  Tileset.getTile(TILE.DOOR);
+		openDoor =  Tileset.getTile(TILE.DOOR);
+		player =  Tileset.getTile(TILE.PLAYER);
 	}
 	
 	public void setPressedKeys(PressedKeys pk) {
@@ -41,15 +45,15 @@ public class World {
 	//15*15
 	private static int[][] level = {{ 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
-									{ 0, 1, 2, 3, 4, 5, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
+									{ 0, 1, 2, 3, 4, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
+									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 9, 1, 1, 1, 5, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
-									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
-									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
+									{ 0, 1, 1, 1, 1, 4, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
 									{ 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, },
@@ -93,15 +97,19 @@ public class World {
 		case 5:
 			world.setRGB(x, y, 32, 32, door, 0, 32);
 			break;
+		case 9:
+			world.setRGB(x, y, 32, 32, player, 0, 32);
+			break;
 		default:
 			world.setRGB(x, y, 32, 32, brick, 0, 32);
 		}
 		
 	}
 	
+	//awesome animated fire !
 	private int[] getFire() {
 		int rand = (int) (Math.random() * 10) % 3;
-		System.out.println("rand = " + rand);
+
 		if (rand == 0) {
 			return fire1;
 		} else if (rand == 1) {

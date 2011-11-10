@@ -11,7 +11,7 @@ public class Tileset {
 	private static int HEIGHT = 32;
 	private static int WIDTH = 32;
 	
-	public enum TILE {BRICK, GROUND, CROSS, BOX, FIRE_1, FIRE_2, FIRE_3, DOOR, PLAYER};
+	public enum TILE {BRICK, GROUND, CROSS, BOX, FIRE_1, FIRE_2, FIRE_3, DOOR, OPEN_DOOR, PLAYER};
 
 	
 	static {
@@ -56,7 +56,13 @@ public class Tileset {
 				image.getRGB(getStartX(7), getStartY(1), WIDTH, HEIGHT, rgb, 0, WIDTH);
 				break;
 			case DOOR:
+				image.getRGB(getStartX(1), getStartY(2), WIDTH, HEIGHT, rgb, 0, WIDTH);
+				break;
+			case OPEN_DOOR:
 				image.getRGB(getStartX(2), getStartY(2), WIDTH, HEIGHT, rgb, 0, WIDTH);
+				break;
+			case PLAYER:
+				image.getRGB(getStartX(3), getStartY(2), WIDTH, HEIGHT, rgb, 0, WIDTH);
 				break;
 		}
 		
